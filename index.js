@@ -40,6 +40,25 @@ connectDB()
 app.use(responseInterceptor)
 app.use(express.urlencoded({ extended: true }))
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')))
+app.get('/', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Website</title>
+    </head>
+    <body>
+      <script>
+        alert('Alert shown first!');
+      </script>
+      <h1>Welcome to the website</h1>
+      <p>The alert was shown before the page loaded.</p>
+    </body>
+    </html>
+  `);
+});
 app.use('/api/v1', AllRoutes)
 app.use(globalExceptionHandler)
 // ResetDailyLimit();
